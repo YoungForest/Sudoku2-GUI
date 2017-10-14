@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace Sudoku2_GUI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BestRecord.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BestRecord : Page
     {
-        public MainWindow()
+        public BestRecord()
         {
             InitializeComponent();
         }
-
     }
 }

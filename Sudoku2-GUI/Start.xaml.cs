@@ -16,14 +16,30 @@ using System.Windows.Shapes;
 namespace Sudoku2_GUI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Start.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Start : Page
     {
-        public MainWindow()
+        public Start()
         {
             InitializeComponent();
+
+            EasyComboBoxItem.IsSelected = true;
         }
 
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void BeginGameButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BestRecordButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

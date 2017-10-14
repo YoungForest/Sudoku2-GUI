@@ -13,5 +13,6 @@ namespace Sudoku2_GUI
     /// </summary>
     public partial class App : Application
     {
+        public int BestRecord = -1;
     }
 }
