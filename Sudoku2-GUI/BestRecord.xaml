@@ -8,7 +8,20 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="BestRecord">
 
-    <Grid>
-        <TextBlock Name="BestRecordTextBlock" />
-    </Grid>
+    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Height="30" Width="140" FontSize="24" Foreground="Blue" > Best Record</TextBlock >
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+            <TextBlock Height="20" Width="60" FontSize="14"> Eazy:  </TextBlock >
+            <TextBlock Name="EazyRecord" Height="20" Width="70" FontSize="14" Margin="10,0,0,0"> </TextBlock >
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+            <TextBlock Height="20" Width="60" FontSize="14"> Medium:</TextBlock >
+            <TextBlock Name="MediumRecord" Height="20" Width="70" FontSize="14" Margin="10,0,0,0"> </TextBlock >
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+            <TextBlock   Height="20" Width="60" FontSize="14"> Hard:</TextBlock >
+            <TextBlock Name="HardRecord" Height="20" Width="70" FontSize="14" Margin="10,0,0,0"> </TextBlock >
+        </StackPanel>
+    </StackPanel>
 </Page>

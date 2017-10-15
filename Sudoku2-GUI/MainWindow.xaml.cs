@@ -23,6 +23,8 @@ namespace Sudoku2_GUI
         public MainWindow()
         {
             InitializeComponent();
+
+            App.f = MyFrame;
         }
 
     }

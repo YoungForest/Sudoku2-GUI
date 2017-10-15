@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Sudoku2_GUI
 {
@@ -13,6 +14,9 @@ namespace Sudoku2_GUI
     /// </summary>
     public partial class App : Application
     {
-        public int BestRecord = -1;
+        public static int BestRecordEasy = -1;
+        public static int BestRecordMedium = -1;
+        public static int BestRecordHard = -1;
+        public static Frame f;
     }
 }

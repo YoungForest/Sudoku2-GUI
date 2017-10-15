@@ -10,16 +10,16 @@
 
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Name="BeginGameButton" Margin="0,0,0,15" Click="BeginGameButton_Click">Start Game</Button>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
-                <TextBlock>难度：</TextBlock>
-                <ComboBox SelectionChanged="ComboBox_SelectionChanged">
-                    <ComboBoxItem Name="EasyComboBoxItem">Easy</ComboBoxItem>
-                    <ComboBoxItem Name="MediumComboBoxItem">Medium</ComboBoxItem>
-                    <ComboBoxItem Name="HardComboBoxItem">Hard</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-            <Button Name="BestRecordButton" Click="BestRecordButton_Click">Best Record</Button>
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
+            <TextBlock>难度：</TextBlock>
+            <ComboBox SelectionChanged="ComboBox_SelectionChanged" Width="80">
+              <ComboBoxItem Name="EasyComboBoxItem" Width="78">Easy</ComboBoxItem>
+              <ComboBoxItem Name="MediumComboBoxItem" Width="78">Medium</ComboBoxItem>
+              <ComboBoxItem Name="HardComboBoxItem" Width="78">Hard</ComboBoxItem>
+            </ComboBox>
+          </StackPanel>
+            <Button Name="BeginGameButton" Margin="0,0,0,15" Click="BeginGameButton_Click" Width="100" >Start Game</Button>
+            <Button Name="BestRecordButton" Click="BestRecordButton_Click" Width="100">Best Record</Button>
         </StackPanel>
     </Grid>
 </Page>
