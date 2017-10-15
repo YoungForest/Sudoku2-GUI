@@ -23,29 +23,33 @@ namespace Sudoku2_GUI
         public BestRecord()
         {
             InitializeComponent();
-            if (App.BestRecordEasy == Int32.MaxValue)
+
+            int BestRecordEasy = Properties.Settings.Default.BestRecordEasy;
+            int BestRecordMedium = Properties.Settings.Default.BestRecordMedium;
+            int BestRecordHard = Properties.Settings.Default.BestRecordHard;
+            if (BestRecordEasy == Int32.MaxValue)
             {
                 EazyRecord.Text = "暂无";
             }
             else
             {
-                EazyRecord.Text = App.BestRecordEasy.ToString() + "s";
+                EazyRecord.Text = BestRecordEasy.ToString() + "s";
             }
-            if (App.BestRecordMedium == Int32.MaxValue)
+            if (BestRecordMedium == Int32.MaxValue)
             {
                 MediumRecord.Text = "暂无";
             }
             else
             {
-                MediumRecord.Text = App.BestRecordMedium.ToString() + "s";
+                MediumRecord.Text = BestRecordMedium.ToString() + "s";
             }
-            if (App.BestRecordHard == Int32.MaxValue)
+            if (BestRecordHard == Int32.MaxValue)
             {
                 HardRecord.Text = "暂无";
             }
             else
             {
-                HardRecord.Text = App.BestRecordHard.ToString() + "s";
+                HardRecord.Text = BestRecordHard.ToString() + "s";
             }
             
             

@@ -14,9 +14,6 @@ namespace Sudoku2_GUI
     /// </summary>
     public partial class App : Application
     {
-        public static int BestRecordEasy = Int32.MaxValue;
-        public static int BestRecordMedium = Int32.MaxValue;
-        public static int BestRecordHard = Int32.MaxValue;
         public static Frame f;
     }
 }

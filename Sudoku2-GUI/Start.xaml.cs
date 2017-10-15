@@ -67,11 +67,6 @@ namespace Sudoku2_GUI
 
             SudokuFounctionLibrary.generate(1, mode, ref GUIpuzzle);
 
-           
-            
-            
-
-
             NavigationWindow window = new NavigationWindow();
 
             window.Source = new Uri("Gaming.xaml", UriKind.Relative);

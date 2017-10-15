@@ -196,25 +196,26 @@ namespace Sudoku2_GUI
                     }
                 }
             }
-            MessageBox.Show(String.Format("Congradulations! Your time spent: {0} s", count));
+            MessageBox.Show(String.Format("Congradulations! Your time spent: {0} s", seconds));
 
             switch (Start.mode)
             {
                 case 1:
-                    if (seconds < App.BestRecordEasy)
-                        App.BestRecordEasy = seconds;
+                    if (seconds < Properties.Settings.Default.BestRecordEasy)
+                        Properties.Settings.Default.BestRecordEasy = seconds;
                     break;
                 case 2:
-                    if (seconds < App.BestRecordMedium)
-                        App.BestRecordMedium = seconds;
+                    if (seconds < Properties.Settings.Default.BestRecordMedium)
+                        Properties.Settings.Default.BestRecordMedium = seconds;
                     break;
                 case 3:
-                    if (seconds < App.BestRecordHard)
-                        App.BestRecordHard = seconds;
+                    if (seconds < Properties.Settings.Default.BestRecordHard)
+                        Properties.Settings.Default.BestRecordHard = seconds;
                     break;
                 default:
                     break;
             }
+            Properties.Settings.Default.Save();
         }
     }
 }
