@@ -157,5 +157,25 @@ namespace Sudoku2_GUI
                 }
             }
         }
+
+        private void BS_Click(object sender, RoutedEventArgs e)
+        {
+            int i, j;
+            for (i = 0; i < 9; i++)
+            {
+                for (j = 0; j < 9; j++)
+                {
+                    var s = ("B" + i) + j;
+                    var n = Int32.Parse((this.FindName(s) as Button).Content.ToString());
+                    if (n != Start.solvedPuzzle[i, j])
+                    {
+                        MessageBox.Show(String.Format("Not a right answer; check mistake at ({0}, {1})", i + 1, j + 1));
+                        return;
+                    }
+                }
+            }
+            success = true;
+
+            MessageBox.Show("Congradulations!");
+        }
     }
-}

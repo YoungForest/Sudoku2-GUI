@@ -136,7 +136,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal"  Name="Buttons2" HorizontalAlignment="Center" Height="45" Width="180" Margin="0,20,0,0" >
             <Button  Name="BH" Content="提示" Width="45" Click="fill" Background="Gainsboro"/>
-            <Button  Name="BS" Content="提交" Width="45" Click="fill" Background="Gainsboro" Margin="90,0,0,0"/>
+            <Button  Name="BS" Content="提交" Width="45" Click="BS_Click" Background="Gainsboro" Margin="90,0,0,0"/>
         </StackPanel>
     </StackPanel>
 
