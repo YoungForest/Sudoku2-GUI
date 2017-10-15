@@ -8,7 +8,7 @@
       d:DesignHeight="800" d:DesignWidth="600"
       Title="Gaming">
     <StackPanel Orientation="Vertical">
-        <TextBox  Name="textBox" Height="30" Width="200" Margin="0,20,0,0"/>
+        <TextBlock  Name="textBox" Height="30" Width="200" Margin="0,20,0,0"/>
         <StackPanel Orientation="Vertical"  Margin="0,20,0,0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button  Name="B00" Content="0" Width="50" Height="50"  Click="choose" Background="Gainsboro"/>

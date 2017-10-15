@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Sudoku2_GUI
 {
@@ -25,17 +26,25 @@ namespace Sudoku2_GUI
         public const double FB = 25;
         public const double FS = 20;
         public const double FSS = 16;
-        public SolidColorBrush startColor= new SolidColorBrush(Color.FromRgb(220, 220, 220));
+        public SolidColorBrush startColor = new SolidColorBrush(Color.FromRgb(220, 220, 220));
         public SolidColorBrush chooseColor = new SolidColorBrush(Color.FromRgb(255, 255, 0));
-        public SolidColorBrush noChangeColor = new SolidColorBrush(Color.FromRgb(190,190,190));
+        public SolidColorBrush noChangeColor = new SolidColorBrush(Color.FromRgb(190, 190, 190));
         public SolidColorBrush helpColor = new SolidColorBrush(Color.FromRgb(255, 0, 0));
         public SolidColorBrush Black = new SolidColorBrush(Color.FromRgb(0, 0, 0));
         String lastChoice;
-        int count=0;
-        int[,] noChange= new int[9,9];
+        int count = 0;
+        int seconds = 0;
+        int[,] noChange = new int[9, 9];
         public Gaming()
         {
             InitializeComponent();
+
+            seconds = 0;
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Tick += TimeTick; //你的事件
+            timer.Start();
+
             int i, j;
             String s;
             //设置边界
@@ -86,7 +95,7 @@ namespace Sudoku2_GUI
                     {
                         (this.FindName(s) as Button).Content = (Start.GUIpuzzle[0][i, j]);
                         (this.FindName(s) as Button).FontSize = FB;
-                        (this.FindName(s) as Button).FontWeight=FontWeights.Bold;
+                        (this.FindName(s) as Button).FontWeight = FontWeights.Bold;
                         (this.FindName(s) as Button).Background = noChangeColor;
                         noChange[i, j] = 1;
                     }
@@ -98,34 +107,39 @@ namespace Sudoku2_GUI
                         {
                             lastChoice = s;
                         }
-                        
+
                         noChange[i, j] = 0;
                     }
                 }
             }
             if (lastChoice == null)
             {
-                lastChoice ="B00";
+                lastChoice = "B00";
             }
             (this.FindName(lastChoice) as Button).Background = chooseColor;
-            textBox.Text = Start.mode+" : "+ count.ToString();
+            
             Core.SudokuFounctionLibrary.solve(Start.GUIpuzzle[0], ref Start.solvedPuzzle);
 
         }
 
+        void TimeTick(object sender, EventArgs e)
+        {
+            textBox.Text = "Difficulty: " + Start.mode + "; Time: " + seconds.ToString() + " s";
+            seconds++;
+        }
 
         void choose(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             char c1 = button.Name[1];
             char c2 = button.Name[2];
-            if (noChange[c1-'0', c2-'0'] == 0)
+            if (noChange[c1 - '0', c2 - '0'] == 0)
             {
                 (this.FindName(lastChoice) as Button).Background = startColor;
                 lastChoice = button.Name;
-                
+
                 (this.FindName(lastChoice) as Button).Background = chooseColor;
-                
+
             }
         }
 
@@ -143,7 +157,7 @@ namespace Sudoku2_GUI
                 }
                 else if (c == 'H')
                 {
-                    (this.FindName(lastChoice) as Button).Content = Start.solvedPuzzle[lastChoice[1]-'0', lastChoice[2] - '0'];
+                    (this.FindName(lastChoice) as Button).Content = Start.solvedPuzzle[lastChoice[1] - '0', lastChoice[2] - '0'];
                     (this.FindName(lastChoice) as Button).FontSize = FSS;
                     (this.FindName(lastChoice) as Button).FontStyle = FontStyles.Italic;
                     (this.FindName(lastChoice) as Button).Foreground = helpColor;
@@ -166,16 +180,41 @@ namespace Sudoku2_GUI
                 for (j = 0; j < 9; j++)
                 {
                     var s = ("B" + i) + j;
-                    var n = Int32.Parse((this.FindName(s) as Button).Content.ToString());
-                    if (n != Start.solvedPuzzle[i, j])
+                    try
                     {
-                        MessageBox.Show(String.Format("Not a right answer; check mistake at ({0}, {1})", i + 1, j + 1));
+                        var n = Int32.Parse((this.FindName(s) as Button).Content.ToString());
+                        if (n != Start.solvedPuzzle[i, j])
+                        {
+                            MessageBox.Show(String.Format("Not a right answer; check mistake at ({0}, {1}). Your time spent: {2} s", i + 1, j + 1, seconds));
+                            return;
+                        }
+                    }
+                    catch(FormatException)
+                    {
+                        MessageBox.Show(String.Format("Not a right answer; check mistake at ({0}, {1}). Your time spent: {2} s", i + 1, j + 1, seconds));
                         return;
                     }
                 }
             }
-            success = true;
+            MessageBox.Show(String.Format("Congradulations! Your time spent: {0} s", count));
 
-            MessageBox.Show("Congradulations!");
+            switch (Start.mode)
+            {
+                case 1:
+                    if (seconds < App.BestRecordEasy)
+                        App.BestRecordEasy = seconds;
+                    break;
+                case 2:
+                    if (seconds < App.BestRecordMedium)
+                        App.BestRecordMedium = seconds;
+                    break;
+                case 3:
+                    if (seconds < App.BestRecordHard)
+                        App.BestRecordHard = seconds;
+                    break;
+                default:
+                    break;
+            }
         }
     }
+}
